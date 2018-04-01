@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈希表</title>
+</head>
+<body>
+<script>
+    function hashFunc(str, max) {
+        // 1.初始化hashCode的值
+        var hashCode = 0
+
+        // 2.霍纳算法, 来计算hashCode的数值
+        for (var i = 0; i < str.length; i++) {
+            hashCode = 37 * hashCode + str.charCodeAt(i)
+        }
+
+        // 3.取模运算
+        hashCode = hashCode % max
+        return hashCode
+    }
+
+    alert(hashFunc("abc", 7)) // 4
+    alert(hashFunc("cba", 7)) // 3
+    alert(hashFunc("nba", 7)) // 5
+    alert(hashFunc("mba", 7)) // 1
+
+</script>
+</body>
+</html>

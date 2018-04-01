@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单排序</title>
+</head>
+<body>
+<script>
+    // 封装ArrayList
+    function ArrayList() {
+        this.array = []
+
+        ArrayList.prototype.insert = function (item) {
+            this.array.push(item)
+        }
+
+        ArrayList.prototype.toString = function () {
+            return this.array.join()
+        }
+
+        ArrayList.prototype.bubbleSort = function () {
+            // 1.获取数组的长度
+            var length = this.array.length
+
+            // 2.反向循环, 因此次数越来越少
+            for (var i = length - 1; i >= 0; i--) {
+                // 3.根据i的次数, 比较循环到i位置
+                for (var j = 0; j < i; j++) {
+                    // 4.如果j位置比j+1位置的数据大, 那么就交换
+                    if (this.array[j] > this.array[j+1]) {
+                        // 交换
+                        this.swap(j, j+1)
+                    }
+                }
+            }
+        }
+
+        ArrayList.prototype.selectionSort = function () {
+            // 1.获取数组的长度
+            var length = this.array.length
+
+            // 2.外层循环: 从0位置开始取出数据, 直到length-2位置
+            for (var i = 0; i < length - 1; i++) {
+                // 3.内层循环: 从i+1位置开始, 和后面的内容比较
+                var min = i
+                for (var j = min + 1; j < length; j++) {
+                    // 4.如果i位置的数据大于j位置的数据, 记录最小的位置
+                    if (this.array[min] > this.array[j]) {
+                        min = j
+                    }
+                }
+                this.swap(min, i)
+            }
+        }
+
+        ArrayList.prototype.insertionSort = function () {
+            // 1.获取数组的长度
+            var length = this.array.length
+
+            // 2.外层循环: 外层循环是从1位置开始, 依次遍历到最后
+            for (var i = 1; i < length; i++) {
+                // 3.记录选出的元素, 放在变量temp中
+                var j = i
+                var temp = this.array[i]
+
+                // 4.内层循环: 内层循环不确定循环的次数, 最好使用while循环
+                while (j > 0 && this.array[j-1] > temp) {
+                    this.array[j] = this.array[j-1]
+                    j--
+                }
+
+                // 5.将选出的j位置, 放入temp元素
+                this.array[j] = temp
+            }
+        }
+
+        ArrayList.prototype.shellSort = function () {
+            // 1.获取数组的长度
+            var length = this.array.length
+
+            // 2.根据长度计算增量
+            var gap = Math.floor(length / 2)
+
+            // 3.增量不断变量小, 大于0就继续排序
+            while (gap > 0) {
+                // 4.实现插入排序
+                for (var i = gap; i < length; i++) {
+                    // 4.1.保存临时变量
+                    var j = i
+                    var temp = this.array[i]
+
+                    // 4.2.插入排序的内存循环
+                    while (j > gap - 1 && this.array[j - gap] > temp) {
+                        this.array[j] = this.array[j - gap]
+                        j -= gap
+                    }
+
+                    // 4.3.将选出的j位置设置为temp
+                    this.array[j] = temp
+                }
+
+                // 5.重新计算新的间隔
+                gap = Math.floor(gap / 2)
+            }
+        }
+
+        ArrayList.prototype.swap = function (m, n) {
+            var temp = this.array[m]
+            this.array[m] = this.array[n]
+            this.array[n] = temp
+        }
+
+        // 选择枢纽
+        ArrayList.prototype.median = function (left, right) {
+            // 1.求出中间的位置
+            var center = Math.floor((left + right) / 2)
+
+            // 2.判断并且进行交换
+            if (this.array[left] > this.array[center]) {
+                this.swap(left, center)
+            }
+            if (this.array[center] > this.array[right]) {
+                this.swap(center, right)
+            }
+            if (this.array[left] > this.array[right]) {
+                this.swap(left, right)
+            }
+
+            // 3.巧妙的操作: 将center移动到right - 1的位置.
+            this.swap(center, right - 1)
+
+            // 4.返回pivot
+            return this.array[right - 1]
+        }
+
+        // 快速排序实现
+        ArrayList.prototype.quickSort = function () {
+            this.quickSortRec(0, this.array.length - 1)
+        }
+
+        ArrayList.prototype.quickSortRec = function (left, right) {
+            // 0.递归结束条件
+            if (left >= right) return
+
+            // 1.获取枢纽
+            var pivot = this.median(left, right)
+
+            // 2.开始进行交换
+            var i = left
+            var j = right - 1
+            while (true) {
+                while (this.array[++i] < pivot) { }
+                while (this.array[--j] > pivot) { }
+                if (i < j) {
+                    this.swap(i, j)
+                } else {
+                    break
+                }
+            }
+
+            // 3.将枢纽放在正确的位置
+            this.swap(i, right - 1)
+
+            // 4.递归调用左边
+            this.quickSortRec(left, i - 1)
+            this.quickSortRec(i + 1, right)
+        }
+    }
+
+    // 初始化数据项
+    var list = new ArrayList()
+    list.insert(3)
+    list.insert(6)
+    list.insert(4)
+    list.insert(2)
+    list.insert(11)
+    list.insert(10)
+    list.insert(5)
+    alert(list) // 3,6,4,2,11,10,5
+
+    // 测试冒泡排序
+//    list.bubbleSort()
+//    alert(list) // 2,3,4,5,6,10,11
+
+    // 测试选择排序
+//    list.selectionSort()
+//    alert(list) // 2,3,4,5,6,10,11
+
+    // 测试插入排序
+//    list.insertionSort()
+//    alert(list) // 2,3,4,5,6,10,11
+
+    // 测试希尔排序
+//    list.shellSort()
+//    alert(list)
+
+    // 测试中位数选取
+//    // 原来的数组: 3,6,4,2,11,10,5
+//    var pivot = list.median(1, 6) // left:6 right:5 center:2
+//    alert(pivot) // pivot:5
+//    alert(list) // 3,2,4,10,11,5,6
+
+    // 测试快速排序
+    list.quickSort()
+    alert(list)
+</script>
+</body>
+</html>

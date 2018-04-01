@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>质数算法</title>
+</head>
+<body>
+<script>
+//    function isPrime(num) {
+//        for (var i = 2; i < num; i++) {
+//            if (num % i == 0) {
+//                return false
+//            }
+//        }
+//        return true
+//    }
+
+    function isPrime(num) {
+        // 1.获取平方根
+        var temp = parseInt(Math.sqrt(num))
+
+        // 2.循环判断
+        for (var i = 2; i <= temp; i++) {
+            if (num % i == 0) {
+                return false
+            }
+        }
+        return true
+    }
+
+    // 测试
+    alert(isPrime(3)) // true
+    alert(isPrime(32)) // false
+    alert(isPrime(37)) // true
+
+    alert(5/2)
+</script>
+</body>
+</html>

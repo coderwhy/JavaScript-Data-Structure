@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 初始化一个数组
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    // 添加一个元素10到数组的最后位置
+    // 方式一:
+    numbers[numbers.length] = 10
+
+    // 方式二:
+    numbers.push(11)
+    numbers.push(12, 13)
+
+//    alert(numbers)
+
+    // 在数组首位插入一个元素
+    for (var i = numbers.length; i > 0; i--) {
+        numbers[i] = numbers[i-1]
+    }
+    numbers[0] = -1
+//    alert(numbers) // -1,0,1,2,3,4,5,6,7,8,9,10,11,12,13
+
+    // 通过unshift在首位插入数据
+    numbers.unshift(-2)
+    numbers.unshift(-4, -3)
+//    alert(numbers) // -4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13
+
+//    // 删除最后的元素
+//    numbers.pop()
+//    alert(numbers) // -4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12
+//
+//    // 删除首位的元素
+//    for (var i = 0; i < numbers.length; i++) {
+//        numbers[i] = numbers[i+1]
+//    }
+//    numbers.pop()
+//    alert(numbers)
+//
+//    numbers.shift()
+//    alert(numbers)
+
+    // 删除指定位置的几个元素
+    numbers.splice(5, 3)
+//    alert(numbers) // -4,-3,-2,-1,0,4,5,6,7,8,9,10,11,12,13
+
+    // 插入指定位置元素
+    numbers.splice(5, 0, 3, 2, 1)
+//    alert(numbers) // -4,-3,-2,-1,0,3,2,1,4,5,6,7,8,9,10,11,12,13
+
+    // 修改指定位置的元素
+    numbers.splice(5, 3, "a", "b", "c")
+    alert(numbers) // -4,-3,-2,-1,0,a,b,c,4,5,6,7,8,9,10,11,12,13
+</script>
+</body>
+</html>

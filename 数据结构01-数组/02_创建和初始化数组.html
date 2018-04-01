@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建和初始化数组</title>
+</head>
+<body>
+<script>
+    // 创建和初始化数组
+    var daysOfWeek = new Array()
+    var daysOfWeek = new Array(7)
+    var daysOfWeek = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday',
+        'Thursday', 'Friday', 'Saturday')
+
+    // 直接赋值数组内容
+    var daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+        'Thursday', 'Friday', 'Saturday'];
+
+    // 获取数组的长度
+//    alert(daysOfWeek.length)
+//
+//    // 普通for方式遍历数组
+//    for (var i = 0; i < daysOfWeek.length; i++) {
+//        alert(daysOfWeek[i])
+//    }
+//
+//    // 通过foreach遍历数组
+//    daysOfWeek.forEach(function (value) {
+//        alert(value)
+//    })
+
+    // 求菲波那切数列的前20个数字
+    var fibonacci = []
+    fibonacci[0] = 1
+    fibonacci[1] = 1
+
+    for (var i = 2; i < 20; i++) {
+        fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2]
+    }
+
+    alert(fibonacci)
+
+</script>
+</body>
+</html>

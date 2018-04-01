@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    // 数组的合并
+//    var nums1 = [1, 2, 3]
+//    var nums2 = [100, 200, 300]
+//    var newNums = nums1.concat(nums2)
+//    alert(newNums) // 1,2,3,100,200,300
+//
+//    newNums = nums1 + nums2
+//    alert(newNums)
+//
+//    nums1.eve
+
+    // 定义数组
+    var names = ["abc", "cb", "mba", "dna"]
+
+    // 在names中所有的元素后面拼接-abc
+    var newNames = names.map(function (t) {
+        return t + "-abc"
+    })
+    alert(newNames)
+
+//    // 获取names中所有包含'a'字符的元素
+//    var newNames = names.filter(function (t) {
+//        return t.indexOf("a") != -1
+//    })
+//    alert(newNames)
+
+//    // forEach的使用
+//    names.forEach(function (t) {
+//        alert(t)
+//    })
+
+//    // 判断数组中是否包含有a字符的字符
+//    var flag = names.some(function (t) {
+//        alert(t)
+//        return t.indexOf("a") != -1
+//    })
+//    alert(flag)
+
+//    // 判断数组的元素是否都包含a字符
+//    var flag = names.every(function (t) {
+//        return t.indexOf('a') != -1
+//    })
+//    alert(flag)
+</script>
+</body>
+</html>

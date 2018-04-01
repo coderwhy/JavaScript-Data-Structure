@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1.定义数组
+    var numbers = [1, 2, 3, 4]
+
+    // 2.for实现累加
+//    var total = 0
+//    for (var i = 0; i < numbers.length; i++) {
+//        total += numbers[i]
+//    }
+//    alert(total) // 10
+
+    // 3.使用forEach
+//    var total = 0
+//    numbers.forEach(function (t) {
+//        total += t
+//    })
+//    alert(total)
+
+    // 4.使用reduce方法
+    var total = numbers.reduce(function (pre, cur) {
+        return pre + cur
+    })
+    alert(total)
+</script>
+</body>
+</html>
